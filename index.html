@@ -154,5 +154,111 @@
   </div>
 </section>
 
+<!-- BUNDLE BUILDER -->
+<section id="bundle" class="py-20 px-6 max-w-3xl mx-auto">
+  <div class="text-center mb-12">
+    <p class="text-sm font-semibold tracking-widest uppercase mb-3" style="color:#06d8b8;">Build Your Package</p>
+    <h2 class="text-4xl font-extrabold">DIY Bundle</h2>
+    <p class="text-gray-400 mt-3">Select the services you need — see your total instantly.</p>
+  </div>
+
+  <div class="card-border rounded-2xl p-8 bg-white/[0.03] space-y-4">
+
+    <label class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="bundle-check w-5 h-5 cursor-pointer" data-price="2500" />
+        <div>
+          <div class="font-semibold">Top-tier PR</div>
+          <div class="text-sm text-gray-400">3 top-tier traditional articles</div>
+        </div>
+      </div>
+      <div class="font-bold text-lg">$2,500</div>
+    </label>
+
+    <label class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="bundle-check w-5 h-5 cursor-pointer" data-price="4000" />
+        <div>
+          <div class="font-semibold">Legacy PR Kit</div>
+          <div class="text-sm text-gray-400">40 articles, mass distribution</div>
+        </div>
+      </div>
+      <div class="font-bold text-lg">$4,000</div>
+    </label>
+
+    <label class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="bundle-check w-5 h-5 cursor-pointer" data-price="4000" />
+        <div>
+          <div class="font-semibold">Founder Interview</div>
+          <div class="text-sm text-gray-400">1 Traditional + 1 Crypto outlet</div>
+        </div>
+      </div>
+      <div class="font-bold text-lg">$4,000</div>
+    </label>
+
+    <label class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="bundle-check w-5 h-5 cursor-pointer" data-price="2500" />
+        <div>
+          <div class="font-semibold">Naver SEO Blog</div>
+          <div class="text-sm text-gray-400">10 posts/month, topical clusters</div>
+        </div>
+      </div>
+      <div class="font-bold text-lg">$2,500<span class="text-sm font-normal text-gray-400">/mo</span></div>
+    </label>
+
+    <label class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
+      <div class="flex items-center gap-4">
+        <input type="checkbox" class="bundle-check w-5 h-5 cursor-pointer" data-price="10000" />
+        <div>
+          <div class="font-semibold">Crypto Insight (MBN TV)</div>
+          <div class="text-sm text-gray-400">~100K viewers, national TV + YouTube</div>
+        </div>
+      </div>
+      <div class="font-bold text-lg">$10,000</div>
+    </label>
+
+    <div class="border-t border-white/10 mt-4 pt-6 flex items-center justify-between">
+      <div class="text-gray-400 text-sm">Your bundle total</div>
+      <div id="bundle-total" class="text-3xl font-extrabold" style="color:#06d8b8;">$0</div>
+    </div>
+
+    <a href="#contact"
+       id="bundle-cta"
+       class="block w-full text-center py-3 rounded-full font-semibold transition-all duration-200"
+       style="background:#06d8b8; color:#0a0a0a; opacity:0.35; pointer-events:none;">
+      Get Custom Quote
+    </a>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var checks = document.querySelectorAll('.bundle-check');
+    var totalEl = document.getElementById('bundle-total');
+    var cta = document.getElementById('bundle-cta');
+
+    function updateTotal() {
+      var total = 0;
+      checks.forEach(function(cb) {
+        if (cb.checked) total += parseInt(cb.dataset.price, 10);
+      });
+      totalEl.textContent = total > 0 ? '$' + total.toLocaleString() : '$0';
+      if (total > 0) {
+        cta.style.opacity = '1';
+        cta.style.pointerEvents = 'auto';
+      } else {
+        cta.style.opacity = '0.35';
+        cta.style.pointerEvents = 'none';
+      }
+    }
+
+    checks.forEach(function(cb) {
+      cb.addEventListener('change', updateTotal);
+    });
+  })();
+</script>
+
 </body>
 </html>
