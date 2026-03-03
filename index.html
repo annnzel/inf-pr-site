@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INF CryptoLab — Korea PR Services</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="description" content="INF CryptoLab — Korea's leading PR agency for global crypto and tech brands. Get featured in Korea's top media: Hankyung, Maeil, Chosun, Coinness and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
   <script>
     tailwind.config = {
       theme: {
@@ -16,6 +19,7 @@
       }
     }
   </script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #0a0a0a; color: #ffffff; font-family: 'DM Sans', sans-serif; }
     .glow-teal { box-shadow: 0 0 20px rgba(6, 216, 184, 0.3); }
@@ -26,14 +30,18 @@
     .delay-100 { animation-delay: 0.1s; opacity: 0; }
     .delay-200 { animation-delay: 0.2s; opacity: 0; }
     .delay-300 { animation-delay: 0.3s; opacity: 0; }
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in-up { animation: none; opacity: 1; }
+      .delay-100, .delay-200, .delay-300 { opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 backdrop-blur-sm bg-[#0a0a0a]/80">
-  <span class="text-lg font-bold tracking-tight">INF <span style="color:#06d8b8">Crypto</span>Lab</span>
-  <a href="https://calendly.com/uno-infcl/30min" target="_blank"
+<nav aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 backdrop-blur-sm bg-[#0a0a0a]/80">
+  <a href="#" class="text-lg font-bold tracking-tight">INF <span style="color:#06d8b8">Crypto</span>Lab</a>
+  <a href="https://calendly.com/uno-infcl/30min" target="_blank" rel="noopener noreferrer"
      class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 hover:opacity-90"
      style="background:#06d8b8; color:#0a0a0a;">
     Book a Call
@@ -58,7 +66,7 @@
          style="background:#06d8b8;">
         Get in Touch
       </a>
-      <a href="https://calendly.com/uno-infcl/30min" target="_blank"
+      <a href="https://calendly.com/uno-infcl/30min" target="_blank" rel="noopener noreferrer"
          class="px-8 py-3 rounded-full font-semibold border transition-all hover:border-[#06d8b8] hover:text-[#06d8b8]"
          style="border-color:rgba(255,255,255,0.15); color:#ffffff;">
         Book a Call
