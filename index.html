@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INF CryptoLab — Korea PR Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { teal: '#06d8b8' },
+          fontFamily: { sans: ['DM Sans', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #0a0a0a; color: #ffffff; font-family: 'DM Sans', sans-serif; }
+    .glow-teal { box-shadow: 0 0 20px rgba(6, 216, 184, 0.3); }
+    .card-border { border: 1px solid rgba(255,255,255,0.08); }
+    .card-border:hover { border-color: rgba(6, 216, 184, 0.4); box-shadow: 0 0 24px rgba(6,216,184,0.15); }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    .fade-in-up { animation: fadeInUp 0.7s ease forwards; }
+    .delay-100 { animation-delay: 0.1s; opacity: 0; }
+    .delay-200 { animation-delay: 0.2s; opacity: 0; }
+    .delay-300 { animation-delay: 0.3s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 border-b border-white/5 backdrop-blur-sm bg-[#0a0a0a]/80">
+  <span class="text-lg font-bold tracking-tight">INF <span style="color:#06d8b8">Crypto</span>Lab</span>
+  <a href="https://calendly.com/uno-infcl/30min" target="_blank"
+     class="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-200 hover:opacity-90"
+     style="background:#06d8b8; color:#0a0a0a;">
+    Book a Call
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(6,216,184,0.12) 0%, transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-3xl mx-auto">
+    <p class="fade-in-up text-sm font-semibold tracking-widest uppercase mb-4" style="color:#06d8b8;">Korea PR Agency</p>
+    <h1 class="fade-in-up delay-100 text-5xl md:text-6xl font-extrabold leading-tight mb-6">
+      Get Featured in<br />Korea's Top Media
+    </h1>
+    <p class="fade-in-up delay-200 text-lg md:text-xl text-gray-400 mb-10 max-w-xl mx-auto">
+      From blockchain startups to global tech brands — we place your story in front of Korea's most influential journalists, investors, and readers.
+    </p>
+    <div class="fade-in-up delay-300 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#contact"
+         class="px-8 py-3 rounded-full font-semibold text-[#0a0a0a] transition-all hover:opacity-90"
+         style="background:#06d8b8;">
+        Get in Touch
+      </a>
+      <a href="https://calendly.com/uno-infcl/30min" target="_blank"
+         class="px-8 py-3 rounded-full font-semibold border transition-all hover:border-[#06d8b8] hover:text-[#06d8b8]"
+         style="border-color:rgba(255,255,255,0.15); color:#ffffff;">
+        Book a Call
+      </a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
