@@ -34,8 +34,15 @@
     @media (prefers-reduced-motion: reduce) {
       .fade-in-up { animation: none; opacity: 1; }
       .delay-100, .delay-200, .delay-300 { opacity: 1; }
+      .card-border, .bundle-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
     }
     .bundle-item:focus-within { outline: 1px solid rgba(6,216,184,0.5); border-radius: 0.75rem; }
+    /* Active nav state on scroll — visual refinement */
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
@@ -416,6 +423,42 @@
 
 <!-- Calendly widget script -->
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return; // skip logo link
+      e.preventDefault();
+      var target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Scroll reveal: fade-in-up for cards and bundle items
+  if (window.IntersectionObserver) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-border, .bundle-item').forEach(function(el) {
+      // Don't override elements already handled by CSS animations
+      if (!el.classList.contains('fade-in-up')) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        revealObserver.observe(el);
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
