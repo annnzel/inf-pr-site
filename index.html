@@ -43,6 +43,16 @@
     .bundle-item:focus-within { outline: 1px solid rgba(6,216,184,0.5); border-radius: 0.75rem; }
     /* Active nav state on scroll — visual refinement */
     html { scroll-behavior: smooth; }
+    /* Case study modal */
+    .modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.88);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;}
+    .modal-overlay.open{opacity:1;visibility:visible;}
+    .modal-box{background:#111;border:1px solid rgba(255,255,255,0.1);border-radius:1.25rem;max-width:600px;width:100%;max-height:80vh;display:flex;flex-direction:column;transform:translateY(20px);transition:transform .25s ease;}
+    .modal-overlay.open .modal-box{transform:translateY(0);}
+    .modal-body{overflow-y:auto;padding:0 1.5rem 1.5rem;scrollbar-width:thin;scrollbar-color:rgba(6,216,184,0.3) transparent;}
+    .modal-body::-webkit-scrollbar{width:4px;}
+    .modal-body::-webkit-scrollbar-thumb{background:rgba(6,216,184,0.3);border-radius:2px;}
+    .case-card{cursor:pointer;}
+    .case-card:focus-visible{outline:2px solid rgba(6,216,184,0.5);outline-offset:2px;}
   </style>
 </head>
 <body>
@@ -315,41 +325,45 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
     <!-- Hello Trade -->
-    <div class="card-border rounded-2xl p-7 bg-white/[0.03] transition-all duration-300">
+    <div class="card-border case-card rounded-2xl p-7 bg-white/[0.03] transition-all duration-300"
+         data-case="hello-trade" role="button" tabindex="0" aria-haspopup="dialog">
       <div class="text-xs font-semibold tracking-widest uppercase mb-4 text-gray-500">Top-tier + Mass Distribution</div>
       <h3 class="text-xl font-bold mb-3">Hello Trade</h3>
-      <p class="text-gray-400 text-sm mb-4">Achieved maximum coverage combining top-tier editorial placements with mass press release distribution across Korea's media landscape.</p>
-      <ul class="text-sm text-gray-300 space-y-2">
-        <li><span style="color:#06d8b8;">✦</span> Top-tier editorial coverage</li>
-        <li><span style="color:#06d8b8;">✦</span> Mass distribution network</li>
-        <li><span style="color:#06d8b8;">✦</span> Full media reference sheet</li>
+      <p class="text-gray-400 text-sm mb-4">21-outlet coverage combining top-tier editorial placements with mass distribution across Korea's media landscape.</p>
+      <ul class="text-sm text-gray-300 space-y-2 mb-5">
+        <li><span style="color:#06d8b8;">✦</span> 21 placements · Nov 2025</li>
+        <li><span style="color:#06d8b8;">✦</span> Hankyung, MK, Chosun Biz &amp; more</li>
+        <li><span style="color:#06d8b8;">✦</span> Traditional + crypto media mix</li>
       </ul>
+      <p class="text-xs font-semibold tracking-widest" style="color:#06d8b8;">VIEW COVERAGE →</p>
     </div>
 
     <!-- Surf AI -->
-    <div class="card-border rounded-2xl p-7 bg-white/[0.03] transition-all duration-300">
-      <div class="text-xs font-semibold tracking-widest uppercase mb-4 text-gray-500">Top-tier Focus</div>
+    <div class="card-border case-card rounded-2xl p-7 bg-white/[0.03] transition-all duration-300"
+         data-case="surf-ai" role="button" tabindex="0" aria-haspopup="dialog">
+      <div class="text-xs font-semibold tracking-widest uppercase mb-4 text-gray-500">Multi-Campaign Coverage</div>
       <h3 class="text-xl font-bold mb-3">Surf AI</h3>
-      <p class="text-gray-400 text-sm mb-4">Secured simultaneous coverage across 8 of Korea's most influential media outlets in a single campaign.</p>
-      <ul class="text-sm text-gray-300 space-y-2">
-        <li><span style="color:#06d8b8;">✦</span> Chosun Biz</li>
-        <li><span style="color:#06d8b8;">✦</span> The Economist Korea</li>
-        <li><span style="color:#06d8b8;">✦</span> Electronic Times</li>
-        <li><span style="color:#06d8b8;">✦</span> TokenPost + CoinNess</li>
-        <li class="text-gray-500 text-xs">+ 3 more outlets</li>
+      <p class="text-gray-400 text-sm mb-4">31 placements across two PR campaigns — spanning traditional business media and Korea's crypto press.</p>
+      <ul class="text-sm text-gray-300 space-y-2 mb-5">
+        <li><span style="color:#06d8b8;">✦</span> 31 placements · 2 campaigns</li>
+        <li><span style="color:#06d8b8;">✦</span> Chosun Biz, Hankyung, Dong-A</li>
+        <li><span style="color:#06d8b8;">✦</span> Sep–Oct &amp; Dec 2025</li>
       </ul>
+      <p class="text-xs font-semibold tracking-widest" style="color:#06d8b8;">VIEW COVERAGE →</p>
     </div>
 
     <!-- Kite AI -->
-    <div class="card-border rounded-2xl p-7 bg-white/[0.03] transition-all duration-300">
-      <div class="text-xs font-semibold tracking-widest uppercase mb-4 text-gray-500">Founder Interview</div>
+    <div class="card-border case-card rounded-2xl p-7 bg-white/[0.03] transition-all duration-300"
+         data-case="kite-ai" role="button" tabindex="0" aria-haspopup="dialog">
+      <div class="text-xs font-semibold tracking-widest uppercase mb-4 text-gray-500">Tech &amp; Crypto Media</div>
       <h3 class="text-xl font-bold mb-3">Kite AI</h3>
-      <p class="text-gray-400 text-sm mb-4">Placed founder in a high-credibility written interview on Seoul Economic's DeCenter — Korea's leading Web3 media vertical.</p>
-      <ul class="text-sm text-gray-300 space-y-2">
-        <li><span style="color:#06d8b8;">✦</span> Seoul Economic (DeCenter)</li>
-        <li><span style="color:#06d8b8;">✦</span> Coinness coverage</li>
-        <li><span style="color:#06d8b8;">✦</span> Leadership credibility built</li>
+      <p class="text-gray-400 text-sm mb-4">8 placements across Korea's top business and crypto publications for their Google AP2 partnership announcement.</p>
+      <ul class="text-sm text-gray-300 space-y-2 mb-5">
+        <li><span style="color:#06d8b8;">✦</span> 8 placements · Feb 2026</li>
+        <li><span style="color:#06d8b8;">✦</span> Chosun Biz, AI Times, TokenPost</li>
+        <li><span style="color:#06d8b8;">✦</span> Google AP2 partnership news</li>
       </ul>
+      <p class="text-xs font-semibold tracking-widest" style="color:#06d8b8;">VIEW COVERAGE →</p>
     </div>
 
   </div>
@@ -427,6 +441,26 @@
   </div>
 </footer>
 
+<!-- CASE STUDY MODAL -->
+<div id="case-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <div class="flex items-start justify-between p-6 pb-4">
+      <div>
+        <p id="modal-tag" class="text-xs font-semibold tracking-widest uppercase mb-1 text-gray-500"></p>
+        <div class="flex items-center gap-3 flex-wrap">
+          <h3 id="modal-title" class="text-2xl font-bold"></h3>
+          <span id="modal-count" class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background:rgba(6,216,184,0.12);color:#06d8b8;"></span>
+        </div>
+      </div>
+      <button id="modal-close" class="ml-4 mt-1 text-gray-400 hover:text-white transition-colors text-lg leading-none flex-shrink-0" aria-label="Close modal">✕</button>
+    </div>
+    <div class="border-t border-white/5 mx-6 mb-1"></div>
+    <div class="modal-body pt-3">
+      <ul id="modal-articles" class="space-y-1"></ul>
+    </div>
+  </div>
+</div>
+
 <!-- Calendly widget script -->
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
@@ -464,6 +498,166 @@
       }
     });
   }
+
+  // ── Case Study Modals ──────────────────────────────────────────────────────
+  (function() {
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    var cases = {
+      'hello-trade': {
+        tag: 'Top-tier + Mass Distribution',
+        title: 'Hello Trade',
+        articles: [
+          {title:"A Former BlackRock Executive's 'HelloTrade' Raises $4.6M for Blockchain Trading Platform",media:'Chosun Biz',url:'https://biz.chosun.com/industry/business_info/2025/11/21/KDW2KCIFFZFQROGRUMBCFY3QUA'},
+          {title:"'HelloTrade', Founded by Former BlackRock Executive, Raises $4.6M for Blockchain Trading Platform",media:'Electronic Times',url:'https://www.etnews.com/20251121000200'},
+          {title:"'HelloTrade', Launched by a Former BlackRock Executive, Secures $4.6M for Its Blockchain Trading Platform",media:'Seoul Shinmun',url:'https://www.seoul.co.kr/news/economy/2025/11/21/20251121500197'},
+          {title:'HelloTrade, Founded by Former BlackRock Talent, Raises $4.6M in Seed Funding',media:'Platum',url:'https://platum.kr/archives/275338'},
+          {title:'HelloTrade Secures \u20a96.2 Billion in Seed Funding',media:'Culture News',url:'https://www.mhns.co.kr/news/articleView.html?idxno=731815'},
+          {title:'HelloTrade, Founded by Former BlackRock Team, Raises \u20a96.2 Billion in Seed Funding',media:'ITBiz',url:'https://www.it-b.co.kr/news/articleView.html?idxno=85391'},
+          {title:"'HelloTrade', Founded by Former BlackRock Team, Secures $4.6M in Seed Funding",media:'Maeil Business Newspaper',url:'https://www.mk.co.kr/news/stock/11473744'},
+          {title:"'HelloTrade', Founded by Former BlackRock Team, Secures $4.6M in Seed Funding",media:'Maeil Business TV',url:'https://mbnmoney.mbn.co.kr/news/view?news_no=MM1005728597'},
+          {title:"'HelloTrade', Backed by Former BlackRock Executives, Raises $4.6M in Seed Funding",media:'MBN Gold',url:'https://www.mbngold.com/st/news/newsview.ls?news_no=MM1005728597'},
+          {title:"Former BlackRock Team's Startup 'HelloTrade' Raises $4.6M in Seed Funding",media:'Korea Economic Daily',url:'https://www.hankyung.com/article/202511206806O'},
+          {title:'HelloTrade, Founded by Former BlackRock Team, Secures \u20a96.2 Billion in Seed Round',media:'TechWorld',url:'https://www.epnc.co.kr/news/articleView.html?idxno=325029'},
+          {title:'HelloTrade Raises \u20a96.2 Billion in Seed Round',media:'ABC News',url:'https://www.abcn.kr/news/articleView.html?idxno=84815'},
+          {title:'HelloTrade Secures \u20a96.2 Billion to Build Blockchain Trading Platform',media:'IT Biz News',url:'https://www.itbiznews.com/news/articleView.html?idxno=188065'},
+          {title:"Key Figures Behind BlackRock's Bitcoin ETF Join Forces to Build Blockchain Trading Platform 'HelloTrade'",media:'Economic Review',url:'https://www.econovill.com/news/articleView.html?idxno=719301'},
+          {title:"'HelloTrade', Founded by Former BlackRock Team, Secures \u20a96.2 Billion in Seed Funding",media:'WowTail',url:'https://wowtale.net/2025/11/21/250888/'},
+          {title:"Former BlackRock Co-Founder's Blockchain Trading Platform 'HelloTrade' Raises \u20a96.2 Billion in Seed Funding",media:'Korea Youth Daily',url:'https://www.koreayouthdaily.com/news/444633'},
+          {title:'Blockchain Trading Platform HelloTrade Raises $4.6M in Seed Funding',media:'CBC News',url:'https://www.cbci.co.kr/news/articleView.html?idxno=540764'},
+          {title:"Former BlackRock Team's Startup 'HelloTrade' Secures $4.6M in Seed Funding",media:'BloomingBit',url:'https://bloomingbit.io/feed/news/101097'},
+          {title:'HelloTrade Secures $4.6M in Seed Investment',media:'CoinNess',url:'https://coinness.com/community/opinion/9660'},
+          {title:"Former BlackRock Co-Founder's Blockchain Trading Platform 'HelloTrade' Raises \u20a96.2 Billion in Seed Funding",media:'Agricultural Management Education Newspaper',url:'https://www.nbiznews.net/news/404583'},
+          {title:"Former BlackRock Co-Founder's Blockchain Trading Platform 'HelloTrade' Raises \u20a96.2 Billion in Seed Funding",media:'Hope Together 365',url:'https://www.hdh365.co.kr/news/444633'}
+        ]
+      },
+      'surf-ai': {
+        tag: 'Multi-Campaign Coverage',
+        title: 'Surf AI',
+        groups: [
+          {
+            label: 'Campaign 1 · Sep–Oct 2025',
+            articles: [
+              {media:'Bloomingbits',url:'https://bloomingbit.io/feed/news/97059'},
+              {media:'Coinness',url:'https://coinness.com/news/1138516'},
+              {media:'Blockchain Today',url:'https://www.blockchaintoday.co.kr/news/articleView.html?idxno=55307'},
+              {media:'Maeil Business Newspaper',url:'https://www.mk.co.kr/news/stock/11421227'},
+              {media:'Platum',url:'https://platum.kr/archives/270907'},
+              {media:'Korea Economic Daily',url:'https://www.hankyung.com/article/202509179031O'},
+              {media:'Korea Economics',url:'https://n.news.naver.com/mnews/article/015/0005185971?sid=101'},
+              {media:'Digital Today',url:'https://www.digitaltoday.co.kr/news/articleView.html?idxno=592574'},
+              {media:'SisaON',url:'https://www.sisaon.co.kr/news/articleView.html?idxno=175464'},
+              {media:'EBN',url:'https://www.ebn.co.kr/news/articleView.html?idxno=1678902'},
+              {media:'Dailian',url:'https://www.dailian.co.kr/news/view/1556904/'},
+              {media:'Digital Today',url:'https://www.digitaltoday.co.kr/news/articleView.html?idxno=595707'},
+              {media:'Hans Biz',url:'http://www.hansbiz.co.kr/news/articleView.html?idxno=781399'},
+              {media:'Ezy Economy',url:'https://www.ezyeconomy.com/news/articleView.html?idxno=222861'},
+              {media:'KH Games',url:'https://www.khgames.co.kr/news/articleView.html?idxno=244933'},
+              {media:'Gametoc',url:'https://www.gametoc.co.kr/news/articleView.html?idxno=102680'},
+              {media:'Token Post',url:'https://www.tokenpost.kr/news/blockchain/291157'},
+              {media:'Chosun Biz',url:'https://biz.chosun.com/industry/industry_general/2025/10/20/MP4HQF7B7NESJJYLM76L2A54CQ'},
+              {media:'Dong-A',url:'https://www.donga.com/news/article/all/20251020/132596496/1'},
+              {media:'Electronic Times',url:'https://www.etnews.com/20251020000303'},
+              {media:'Hans Economy',url:'http://www.hansbiz.co.kr/news/articleView.html?idxno=784275'}
+            ]
+          },
+          {
+            label: 'Campaign 2 · Dec 2025',
+            articles: [
+              {media:'Chosun Biz',url:'https://biz.chosun.com/industry/business_info/2025/12/11/RAAOMOTMYVEH3DW2FAW7DJ5J7I'},
+              {media:'The Economist',url:'https://economist.co.kr/article/view/ecn202512110031'},
+              {media:'Electronic Times',url:'https://www.etnews.com/20251211000234'},
+              {media:'Digital Times',url:'https://www.dt.co.kr/article/12034618'},
+              {media:'Seoul Shinmun',url:'https://www.seoul.co.kr/news/economy/2025/12/11/20251211500085'},
+              {media:'Hans Economy',url:'https://www.hansbiz.co.kr/news/articleView.html?idxno=799854'},
+              {media:'Digital Today',url:'https://www.digitaltoday.co.kr/news/articleView.html?idxno=612358'},
+              {media:'TokenPost',url:'https://www.tokenpost.kr/news/tech/313490'},
+              {media:'TokenPost',url:'https://www.tokenpost.kr/news/breaking/313362'},
+              {media:'CoinNess',url:'https://coinness.com/news/1145196'}
+            ]
+          }
+        ]
+      },
+      'kite-ai': {
+        tag: 'Tech & Crypto Media',
+        title: 'Kite AI',
+        articles: [
+          {media:'Chosun Biz',url:'https://biz.chosun.com/industry/business_info/2026/02/27/34TPYPW4HVFMFCBMSKLELYVY6Y/'},
+          {media:'Finance Today',url:'https://www.fntoday.co.kr/news/articleView.html?idxno=378546'},
+          {media:'Issue N Biz',url:'https://www.issuenbiz.com/news/articleView.html?idxno=73499'},
+          {media:'AI Times',url:'https://www.aitimes.kr/news/articleView.html?idxno=38850'},
+          {media:'Public25',url:'https://www.public25.com/news/articleView.html?idxno=41137'},
+          {media:'TokenPost',url:'https://www.tokenpost.kr/news/blockchain/334370'},
+          {media:'Digital Today',url:'https://www.digitaltoday.co.kr/news/articleView.html?idxno=635179'},
+          {media:'TechWorld',url:'https://www.epnc.co.kr/news/articleView.html?idxno=329144'}
+        ]
+      }
+    };
+
+    var overlay  = document.getElementById('case-modal');
+    var titleEl  = document.getElementById('modal-title');
+    var tagEl    = document.getElementById('modal-tag');
+    var countEl  = document.getElementById('modal-count');
+    var listEl   = document.getElementById('modal-articles');
+    var closeBtn = document.getElementById('modal-close');
+
+    function makeItem(article) {
+      var li = document.createElement('li');
+      var html = '<a href="' + esc(article.url) + '" target="_blank" rel="noopener noreferrer" ' +
+        'class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 transition-colors group">' +
+        '<span class="inline-block text-xs font-semibold px-2 py-0.5 rounded-full mt-0.5 flex-shrink-0 whitespace-nowrap" ' +
+        'style="background:rgba(6,216,184,0.12);color:#06d8b8;">' + esc(article.media) + '</span>';
+      if (article.title) {
+        html += '<span class="text-sm text-gray-300 group-hover:text-white transition-colors leading-snug flex-1">' + esc(article.title) + '</span>';
+      }
+      html += '<span class="text-gray-600 group-hover:text-[#06d8b8] transition-colors flex-shrink-0 text-xs mt-0.5 ml-auto pl-2">↗</span></a>';
+      li.innerHTML = html;
+      return li;
+    }
+
+    function openModal(key) {
+      var data = cases[key];
+      if (!data) return;
+      tagEl.textContent = data.tag;
+      titleEl.textContent = data.title;
+      listEl.innerHTML = '';
+      var total = 0;
+      if (data.articles) {
+        total = data.articles.length;
+        data.articles.forEach(function(a) { listEl.appendChild(makeItem(a)); });
+      } else if (data.groups) {
+        data.groups.forEach(function(g, i) {
+          total += g.articles.length;
+          var header = document.createElement('li');
+          var borderClass = i === 0 ? '' : 'border-t border-white/5 mt-3 ';
+          header.innerHTML = '<div class="' + borderClass + 'pt-3 pb-1 text-xs font-semibold tracking-widest uppercase text-gray-600">' + esc(g.label) + '</div>';
+          listEl.appendChild(header);
+          g.articles.forEach(function(a) { listEl.appendChild(makeItem(a)); });
+        });
+      }
+      countEl.textContent = total + ' placements';
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.case-card').forEach(function(card) {
+      card.addEventListener('click', function() { openModal(this.dataset.case); });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(this.dataset.case); }
+      });
+    });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal(); });
+  })();
 </script>
 
 </body>
