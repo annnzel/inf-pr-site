@@ -53,6 +53,9 @@
     .modal-body::-webkit-scrollbar-thumb{background:rgba(6,216,184,0.3);border-radius:2px;}
     .case-card{cursor:pointer;}
     .case-card:focus-visible{outline:2px solid rgba(6,216,184,0.5);outline-offset:2px;}
+    .month-btn{color:#888;background:transparent;border:1px solid rgba(255,255,255,0.1);transition:all .2s ease;}
+    .month-btn.active{background:rgba(6,216,184,0.15);border-color:rgba(6,216,184,0.5);color:#fff;}
+    .month-btn:hover:not(.active){border-color:rgba(255,255,255,0.25);color:#fff;}
   </style>
 </head>
 <body>
@@ -177,7 +180,7 @@
   <div class="text-center mb-12">
     <p class="text-sm font-semibold tracking-widest uppercase mb-3" style="color:#06d8b8;">Build Your Package</p>
     <h2 class="text-4xl font-extrabold">DIY Bundle</h2>
-    <p class="text-gray-400 mt-3">Select the services you need — see your total instantly.</p>
+    <p class="text-gray-400 mt-3">All prices are <span class="text-white font-semibold">per month</span> — pick your services and commitment period.</p>
   </div>
 
   <div class="card-border rounded-2xl p-8 bg-white/[0.03] space-y-4">
@@ -190,7 +193,7 @@
           <div class="text-sm text-gray-400">3 top-tier traditional articles</div>
         </div>
       </div>
-      <div class="font-bold text-lg">$2,500</div>
+      <div class="font-bold text-lg">$2,500<span class="text-sm font-normal text-gray-500">/mo</span></div>
     </label>
 
     <label for="bundle-legacy" class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
@@ -201,7 +204,7 @@
           <div class="text-sm text-gray-400">40 articles, mass distribution</div>
         </div>
       </div>
-      <div class="font-bold text-lg">$4,000</div>
+      <div class="font-bold text-lg">$4,000<span class="text-sm font-normal text-gray-500">/mo</span></div>
     </label>
 
     <label for="bundle-interview" class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
@@ -212,7 +215,7 @@
           <div class="text-sm text-gray-400">1 Traditional + 1 Crypto outlet</div>
         </div>
       </div>
-      <div class="font-bold text-lg">$4,000</div>
+      <div class="font-bold text-lg">$4,000<span class="text-sm font-normal text-gray-500">/mo</span></div>
     </label>
 
     <label for="bundle-naver" class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
@@ -223,7 +226,7 @@
           <div class="text-sm text-gray-400">10 posts/month, topical clusters</div>
         </div>
       </div>
-      <div class="font-bold text-lg">$2,500</div>
+      <div class="font-bold text-lg">$2,500<span class="text-sm font-normal text-gray-500">/mo</span></div>
     </label>
 
     <label for="bundle-tv" class="bundle-item flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all hover:bg-white/5">
@@ -234,12 +237,47 @@
           <div class="text-sm text-gray-400">~100K viewers, national TV + YouTube</div>
         </div>
       </div>
-      <div class="font-bold text-lg">$10,000</div>
+      <div class="font-bold text-lg">$10,000<span class="text-sm font-normal text-gray-500">/mo</span></div>
     </label>
 
-    <div class="border-t border-white/10 mt-4 pt-6 flex items-center justify-between">
-      <div class="text-gray-400 text-sm">Your bundle total</div>
-      <div id="bundle-total" class="text-3xl font-extrabold" style="color:#06d8b8;">$0</div>
+    <!-- Month selector -->
+    <div class="border-t border-white/10 pt-5">
+      <div class="text-xs font-semibold tracking-widest uppercase mb-3 text-gray-500">Commitment Period</div>
+      <div class="flex gap-2">
+        <button type="button" data-months="1" class="month-btn active flex-1 py-3 rounded-xl text-sm font-semibold">
+          1 Month
+        </button>
+        <button type="button" data-months="2" class="month-btn flex-1 py-3 rounded-xl text-sm font-semibold">
+          2 Months
+          <span class="block text-xs mt-0.5 font-normal" style="color:#06d8b8;">Save 10%</span>
+        </button>
+        <button type="button" data-months="3" class="month-btn flex-1 py-3 rounded-xl text-sm font-semibold">
+          3 Months
+          <span class="block text-xs mt-0.5 font-normal" style="color:#06d8b8;">Save 15%</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Total display -->
+    <div class="border-t border-white/10 pt-5 space-y-2">
+      <!-- Breakdown rows (shown when >1 month) -->
+      <div id="bundle-breakdown" style="display:none;" class="space-y-2 pb-2">
+        <div class="flex items-center justify-between text-sm text-gray-400">
+          <span id="bundle-monthly-label"></span>
+          <span id="bundle-subtotal"></span>
+        </div>
+        <div class="flex items-center justify-between text-sm font-semibold" style="color:#06d8b8;">
+          <span id="bundle-discount-label"></span>
+          <span id="bundle-savings"></span>
+        </div>
+      </div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-gray-400 text-sm">Total</span>
+          <span id="bundle-period-tag" style="display:none;" class="text-xs font-semibold px-2 py-0.5 rounded-full" style="background:rgba(6,216,184,0.12);color:#06d8b8;"></span>
+        </div>
+        <div id="bundle-total" class="text-3xl font-extrabold" style="color:#06d8b8;">$0</div>
+      </div>
     </div>
 
     <a href="#contact"
@@ -254,28 +292,63 @@
 
 <script>
   (function() {
-    var checks = document.querySelectorAll('.bundle-check');
-    var totalEl = document.getElementById('bundle-total');
-    var cta = document.getElementById('bundle-cta');
+    var checks     = document.querySelectorAll('.bundle-check');
+    var monthBtns  = document.querySelectorAll('.month-btn');
+    var totalEl    = document.getElementById('bundle-total');
+    var cta        = document.getElementById('bundle-cta');
+    var breakdown  = document.getElementById('bundle-breakdown');
+    var moLabel    = document.getElementById('bundle-monthly-label');
+    var subtotalEl = document.getElementById('bundle-subtotal');
+    var discLabel  = document.getElementById('bundle-discount-label');
+    var savingsEl  = document.getElementById('bundle-savings');
+    var periodTag  = document.getElementById('bundle-period-tag');
+
+    var discounts = { 1: 0, 2: 0.10, 3: 0.15 };
+    var selectedMonths = 1;
 
     function updateTotal() {
-      var total = 0;
+      var monthly = 0;
       checks.forEach(function(cb) {
-        if (cb.checked) total += parseInt(cb.dataset.price, 10) || 0;
+        if (cb.checked) monthly += parseInt(cb.dataset.price, 10) || 0;
       });
-      totalEl.textContent = total > 0 ? '$' + total.toLocaleString() : '$0';
-      cta.setAttribute('aria-disabled', total > 0 ? 'false' : 'true');
-      if (total > 0) {
-        cta.style.opacity = '1';
-        cta.style.pointerEvents = 'auto';
+
+      var subtotal = monthly * selectedMonths;
+      var discount = discounts[selectedMonths] || 0;
+      var savings  = Math.round(subtotal * discount);
+      var total    = subtotal - savings;
+
+      if (selectedMonths > 1 && monthly > 0) {
+        breakdown.style.display = 'block';
+        moLabel.textContent    = '$' + monthly.toLocaleString() + '/mo × ' + selectedMonths + ' months';
+        subtotalEl.textContent = '$' + subtotal.toLocaleString();
+        discLabel.textContent  = (discount * 100) + '% discount';
+        savingsEl.textContent  = '-$' + savings.toLocaleString();
+        periodTag.style.display     = 'inline';
+        periodTag.style.background  = 'rgba(6,216,184,0.12)';
+        periodTag.style.color       = '#06d8b8';
+        periodTag.textContent       = selectedMonths + '-month plan';
       } else {
-        cta.style.opacity = '0.35';
-        cta.style.pointerEvents = 'none';
+        breakdown.style.display = 'none';
+        periodTag.style.display = 'none';
       }
+
+      totalEl.textContent = monthly > 0 ? '$' + total.toLocaleString() : '$0';
+
+      var active = monthly > 0;
+      cta.setAttribute('aria-disabled', active ? 'false' : 'true');
+      cta.style.opacity      = active ? '1' : '0.35';
+      cta.style.pointerEvents = active ? 'auto' : 'none';
     }
 
-    checks.forEach(function(cb) {
-      cb.addEventListener('change', updateTotal);
+    checks.forEach(function(cb) { cb.addEventListener('change', updateTotal); });
+
+    monthBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        selectedMonths = parseInt(this.dataset.months, 10);
+        monthBtns.forEach(function(b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        updateTotal();
+      });
     });
   })();
 </script>
